@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class CrispyFlour extends Material {
+public class CrispyFlour extends Material implements Discount {
 
     private double quantity;
 
@@ -19,7 +19,8 @@ public class CrispyFlour extends Material {
 
     @Override
     public double getAmount() {
-        return quantity * cost;
+        double originalAmount = quantity * cost;
+        return originalAmount - applyDiscount(originalAmount);
     }
 
     @Override
@@ -43,5 +44,15 @@ public class CrispyFlour extends Material {
                 "', cost = '" + cost +
                 "', quantity = '" + quantity +
                 "'}";
+    }
+
+    @Override
+    public double applyDiscount(double amount) {
+        return amount * 0.06;
+    }
+
+    @Override
+    public double getAmountWithoutDiscount() {
+        return getCost() * getQuantity();
     }
 }

@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Meat extends Material {
+public class Meat extends Material implements Discount {
 
     private double weight;
 
@@ -19,7 +19,8 @@ public class Meat extends Material {
 
     @Override
     public double getAmount() {
-        return cost * weight;
+        double originalAmount = cost * weight;
+        return originalAmount - applyDiscount(originalAmount);
     }
 
     @Override
@@ -43,5 +44,15 @@ public class Meat extends Material {
                 "', cost = '" + cost +
                 "', weight=" + weight +
                 "}";
+    }
+
+    @Override
+    public double applyDiscount(double amount) {
+        return amount * 0.03;
+    }
+
+    @Override
+    public double getAmountWithoutDiscount() {
+        return getCost() * getWeight();
     }
 }

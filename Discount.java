@@ -1,3 +1,3 @@
 public interface Discount {
-    double getRealMoney();
+    double applyDiscount(double amount);
 }

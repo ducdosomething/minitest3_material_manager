@@ -52,6 +52,12 @@ public abstract class Material {
         this.cost = cost;
     }
 
+    public double calculateDiscountDifference() {
+        double originalAmount = getAmountWithoutDiscount();
+        double discountedAmount = getAmount();
+        return originalAmount - discountedAmount;
+    }
+
     @Override
     public String toString() {
         return "Material {iD=" + iD + ", name=" + name + ", manufacturingDate=" + manufacturingDate + ", cost=" + cost
@@ -61,4 +67,6 @@ public abstract class Material {
     public abstract double getAmount();
 
     public abstract LocalDate getExpiryDate();
+
+    public abstract double getAmountWithoutDiscount();
 }

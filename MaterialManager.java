@@ -37,6 +37,15 @@ public class MaterialManager {
         }
     }
 
+    public Meat searchMeatByCost(double searchMeatCost) {
+        for (Meat meat : meats) {
+            if (meat.getCost() == searchMeatCost) {
+                return meat;
+            }
+        }
+        return null;
+    }
+
     public Meat searchMeatById(String searchMeatId) {
         for (Meat meat : meats) {
             if (meat.getiD().equals(searchMeatId)) {
@@ -64,6 +73,15 @@ public class MaterialManager {
                 return;
             }
         }
+    }
+
+    public CrispyFlour searchFlourByName(String searchFlourName) {
+        for (CrispyFlour flour : flours) {
+            if (flour.getName().equals(searchFlourName)) {
+                return flour;
+            }
+        }
+        return null;
     }
 
     public CrispyFlour searchFlourById(String searchFlourId) {
@@ -94,4 +112,47 @@ public class MaterialManager {
             }
         }
     }
+
+    public void bubbleSortMeatByCost() {
+        int size = meats.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (meats.get(j).getCost() > meats.get(j + 1).getCost()) {
+                    Meat temp = meats.get(j);
+                    meats.set(j, meats.get(j + 1));
+                    meats.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
+    public void bubbleSortFlourByCost() {
+        int size = flours.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (flours.get(j).getCost() > flours.get(j + 1).getCost()) {
+                    CrispyFlour temp = flours.get(j);
+                    flours.set(j, flours.get(j + 1));
+                    flours.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
+    public ArrayList<Meat> getMeats() {
+        return meats;
+    }
+
+    public void setMeats(ArrayList<Meat> meats) {
+        this.meats = meats;
+    }
+
+    public ArrayList<CrispyFlour> getFlours() {
+        return flours;
+    }
+
+    public void setFlours(ArrayList<CrispyFlour> flours) {
+        this.flours = flours;
+    }
+
 }
